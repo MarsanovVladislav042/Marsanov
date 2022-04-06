@@ -1,0 +1,26 @@
+void insert(hash_func* arr,int m,int n) {
+	for (int i = 0; i < n; i++) {
+		int hash = 2 * (i + 1) % m;
+		int data = 2 * (i + 1);
+		if (arr[hash].data == hash && arr[hash].insetr_right == nullptr) {
+			hash_func* Node = new hash_func;
+			Node->data = data;
+			arr[hash].insetr_right = Node;
+		}
+		else {
+			hash_func* run = &arr[hash];
+			if(run->insetr_right != nullptr) {
+				while (run->insetr_right != nullptr) {
+					run = run->insetr_right;
+				}
+			}
+			else {
+				if (run->insetr_right == nullptr) {
+					hash_func* Node = new hash_func;
+					Node->data = data;
+					run->insetr_right = Node;
+				}
+			}
+		}
+	}
+}
